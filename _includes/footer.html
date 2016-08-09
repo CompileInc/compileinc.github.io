@@ -1,0 +1,70 @@
+<footer class="footer">
+  <div class="container">
+    <a href="mailto:{{ site.email }}">
+      <i class="fa fa-envelope-o"></i>
+    </a>
+    {% if site.github_username %}
+    <a href="https://github.com/{{ site.github_username }}">
+      <i class="fa fa-github"></i>
+    </a>
+    {% endif %}
+    {% if site.twitter_username %}
+    <a href="https://twitter.com/{{ site.github_username }}">
+      <i class="fa fa-twitter"></i>
+    </a>
+    {% endif %}
+  </div>
+</footer>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.js"></script>
+
+<script type="text/javascript">
+$(function(){
+  var repo_url = 'https://api.github.com/search/repositories?q=user%3A{{ site.github_username }}+fork%3Atrue&sort=updated&order=desc';
+
+  var render_repos = function(data) {
+    var html = '<div class="columns">'
+    $.each(data.items, function(index, value){
+      var fork = '<i class="fa fa-book"></i>';
+      if(value.fork) {
+        fork = '<i class="fa fa-code-fork"></i>';
+      }
+      var updated_at = new Date(value.updated_at).toLocaleDateString();
+      var repo = '<div class="column is-4 is-block">'+
+                  '<div class="card is-fullwidth">'+
+                    '<header class="card-header">'+
+                      '<p class="card-header-title">'+
+                        value.full_name+
+                      '</p>'+
+                      '<a class="card-header-icon" href='+value.url+'>'+
+                        fork+
+                      '</a>'+
+                    '</header>'+
+                    '<div class="card-content">'+
+                      '<div class="content">'+
+                        value.description+
+                        '<br/>'+
+                        '<small> Last updated: '+updated_at+'</small>'+
+                      '</div>'+
+                    '</div>'+
+                    '<footer class="card-footer">'+
+                      '<a class="card-footer-item" href='+value.url+'>View Source</a>'+
+                    '</footer>'+
+                  '</div>'+
+                 '</div>';
+      html += repo;
+      if ((index+1)%3 == 0) {
+        html += '</div><hr /><div class="columns">';
+      }
+    });
+    html += "</div>";
+    $("#repo-list").html(html);
+  }
+
+  $.getJSON(repo_url, render_repos).fail(function(){
+    var error = '<div class="notification is-warning">There was some error when fetching data from <a href="https://github.com/{{site.github_username}}">github.com/{{site.github_username}}</a>. Please try again in sometime.</div>'
+    $("#repo-list").html(error);
+  });
+
+});
+</script>
