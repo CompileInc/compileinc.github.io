@@ -36,7 +36,7 @@ $(function(){
                       '<p class="card-header-title">'+
                         value.full_name+
                       '</p>'+
-                      '<a class="card-header-icon" href='+value.url+'>'+
+                      '<a class="card-header-icon" href='+value.html_url+'>'+
                         fork+
                       '</a>'+
                     '</header>'+
@@ -48,16 +48,19 @@ $(function(){
                       '</div>'+
                     '</div>'+
                     '<footer class="card-footer">'+
-                      '<a class="card-footer-item" href='+value.url+'>View Source</a>'+
+                      '<a class="card-footer-item" href='+value.html_url+'>View source</a>'+
                     '</footer>'+
                   '</div>'+
                  '</div>';
       html += repo;
       if ((index+1)%3 == 0) {
-        html += '</div><hr /><div class="columns">';
+        html += '</div><div class="columns">';
       }
     });
     html += "</div>";
+    if (data.total_count > 10) {
+      html += '<a href="https://github.com/{{site.github_username}}" class="button is-primary">See all projects<span class="icon is-small"><i class="fa fa-angle-right"></i></span></a>'
+    }
     $("#repo-list").html(html);
   }
 
