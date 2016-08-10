@@ -11,7 +11,7 @@ layout: default
     <article class="media">
       <figure class="media-left">
         <p class="image is-64x64">
-          <a href="{{ user.html_url }}">
+          <a href="{{ user.blog }}">
             <img src="{{ user.avatar_url }}">
           </a>
         </p>
@@ -19,11 +19,10 @@ layout: default
       <div class="media-content">
         <div class="content">
           <p>
-            <strong>{{ user.name }}</strong> <small style='color:#333'>@{{ user.login }}</small>
+            <strong>{{ user.name }}</strong> <small style='color:#333'><a href="{{ user.html_url }}">@{{ user.login }}</a></small>
             <div>
-              <div style='color:#333'>{{ user.location }}</div></div>
-              <div><a href="mailto:{{ user.email }}">{{ user.email }}</a></div>
-              <div><a href="{{ user.blog }}">{{ user.blog }}</a></div>
+              <div style='color:#333'><i class="fa fa-globe" style='margin-top:3px'></i> {{ user.location }}</div></div>
+              <div style='color:#333'><i class="fa fa-envelope" style='margin-top:3px'></i> <a href="mailto:{{ user.email }}">{{ user.email }}</a></div>
             </div>
           </p>
         </div>
