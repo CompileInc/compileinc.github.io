@@ -11,7 +11,10 @@ $(function(){
         fork = '<i class="fa fa-code-fork"></i>';
       }
       var updated_at = new Date(value.updated_at).toLocaleDateString();
-      var description = emojione.toImage(value.description);
+      var description = value.description;
+      if (description != null) {
+        description = emojione.toImage(description);
+      }
       var context = {'value': value,
                      'fork': fork,
                      'description': description,
