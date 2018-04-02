@@ -1,7 +1,9 @@
 <template>
     <div>
       <div class="container">
-        <app-logo/>
+        <nuxt-link to="/">
+          <app-logo/>
+        </nuxt-link>
       </div>
       <div class="jumbotron jumbotron-fluid bg-primary text-white">
         <div class="container">
