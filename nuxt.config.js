@@ -4,6 +4,9 @@ module.exports = {
   */
   github_username: 'CompileInc',
   mode: 'spa',
+  router: {
+    mode: 'hash'
+  },
   head: {
     title: 'Compile',
     script: [
