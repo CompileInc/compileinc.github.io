@@ -14,7 +14,9 @@
         </div>
       </div>
       <div class="container">
-        <RepoListing />
+        <div class="row">
+          <RepoListing />
+        </div>
       </div>
     </div>
 </template>
