@@ -1,7 +1,7 @@
 <template>
   <div class="container" v-if="repos">
     <div class="card-columns">
-      <Repo  :repo=repo v-for="repo in repos.items" :key="repo.id" />
+      <RepoCard  :repo=repo v-for="repo in repos.items" :key="repo.id" />
       <a class="card bg-primary text-white text-center p-3" :href="repos.items[0].owner.html_url" v-if="repos.total_count>100">
         <blockquote class="blockquote mb-0">
           <p>View more projects on github.com</p>
@@ -13,12 +13,12 @@
 
 
 <script>
-import Repo from '~/components/Repo.vue'
+import RepoCard from '~/components/RepoCard.vue'
 import config from '~/nuxt.config'
 
 export default {
   components: {
-    Repo
+    RepoCard
   },
   mounted() {
     let self = this

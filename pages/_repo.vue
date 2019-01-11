@@ -1,19 +1,13 @@
 <template>
-    <div>
-      <div class="jumbotron jumbotron-fluid bg-primary text-white">
-        <div class="container">
-          <div class="row">
-            <div class="col-12 col-xl-8">
-              <h1 class="display-4">Hello World!</h1>
-              <p class="lead">Open source projects from <a href="https://www.compile.com" target="_blank">Compile</a> and the forks of tools we use.</p>
-            </div>
-            <div class="col-12 col-lg-6 col-xl-4">
-              <UserInfo />
-            </div>
-          </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <Repo :repo="$route.params.repo" />
         </div>
-      </div>
-      <div class="container">
+        <div class="col-md-4">
+          <UserInfo />
+        </div>
+        <div class="col mt-4 pt-4"><h4 class="text-muted">Other repositories</h4></div>
         <RepoListing />
       </div>
     </div>
@@ -23,12 +17,14 @@
 import AppLogo from '~/components/AppLogo.vue'
 import UserInfo from '~/components/UserInfo.vue'
 import RepoListing from '~/components/RepoListing.vue'
+import Repo from '~/components/Repo.vue'
 
 export default {
   components: {
     AppLogo,
     UserInfo,
-    RepoListing
+    RepoListing,
+    Repo
   }
 }
 </script>
